@@ -1,47 +1,61 @@
 # House Prices Advanced Regression Techniques — Machine Learning Predictive Modeling
 
-> End-to-end supervised machine learning regression pipeline predicting residential property sale prices using exploratory data analysis, feature engineering, and regularized ensemble models.
+> An end-to-end supervised machine learning study predicting residential property valuations through exploratory data analysis, missing data imputation, skewness correction, and regularized regression models.
+
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
+[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.3%2B-F7931E.svg)](https://scikit-learn.org/)
+[![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626.svg)](https://jupyter.org/)
+[![Pandas](https://img.shields.io/badge/Pandas-2.0%2B-150458.svg)](https://pandas.pydata.org/)
 
 ---
 
-## 1. Project Title
-**House Prices Advanced Regression Techniques** (`sdc-activity`) — Machine Learning Exploratory Data Analysis & Predictive Modeling Activity.
+## Executive Overview
 
-## 2. Project Overview
-This repository contains a comprehensive data science and machine learning regression study based on the Ames Housing dataset. It demonstrates a complete predictive modeling lifecycle: handling high-cardinality categorical variables, imputing missing values with domain heuristics, log-normalizing skewed target distributions, and training regularized linear and gradient-boosted regressors.
+This repository houses a comprehensive applied data science and machine learning regression study based on the Ames Housing dataset. It demonstrates a complete predictive modeling lifecycle: handling 79 diverse explanatory variables, applying domain-informed feature engineering, log-normalizing target distributions, and training regularized linear and ensemble models.
 
-## 3. Problem Statement
-Accurately predicting residential home valuations is challenging due to the interplay of 79 explanatory variables describing structural attributes, location qualities, and zoning categories. Linear models underfit complex non-linear interactions, while raw decision trees overfit small sample sizes. This project establishes an optimal balance using cross-validated regularization.
+---
 
-## 4. Key Pipeline Stages
-- **Data Ingestion & Quality Audit:** Ingesting 1,460 training records across 79 distinct residential characteristics.
-- **Missing Data Imputation:** Specialized imputation strategies for structural features (e.g. `PoolQC`, `MiscFeature`, `Alley`).
-- **Target Skew Correction:** Applying $\log(1 + x)$ transformations to correct right-skewed `SalePrice` distributions.
-- **Model Training & Benchmarking:** Comparing Ridge Regression, Lasso ($L_1$), ElasticNet, and Gradient Boosted Decision Trees.
-- **Evaluation Metric:** Scored against Root-Mean-Squared-Error (RMSE) between logarithmic predicted and observed prices.
+## Machine Learning Pipeline & Methodology
 
-## 5. Technology Stack
-- **Language:** Python 3.10+
-- **Data Manipulation:** Pandas, NumPy
-- **Machine Learning:** Scikit-Learn, SciPy
-- **Data Visualization:** Matplotlib, Seaborn
-- **Environment:** Jupyter Notebook (`Untitled.ipynb`)
+### 1. Exploratory Data Analysis & Target Normalization
+The target variable (`SalePrice`) displays significant right-skewness and heteroscedasticity. A logarithmic transformation is applied:
 
-## 6. Folder Structure
-```
+$$y^* = \log(1 + \text{SalePrice})$$
+
+This centers the residual variance and aligns with the competition's Root-Mean-Squared-Error (RMSE) evaluation metric.
+
+### 2. Feature Engineering & Preprocessing
+- **Missing Data Imputation:** Categorical variables where `NA` indicates absence (e.g. `PoolQC`, `MiscFeature`, `Alley`, `Fence`, `FireplaceQu`) are encoded with dedicated absence tokens.
+- **Categorical Encoding:** One-hot encoding of nominal variables and ordinal mapping of quality ratings (Ex, Gd, TA, Fa, Po).
+- **Correlation Filtering:** Identifying high multicollinearity pairs (e.g., `GarageCars` vs. `GarageArea`) to reduce variance.
+
+### 3. Model Architecture & Benchmarking
+- **Ridge Regression ($L_2$ Regularization):** Shrinks coefficients of correlated features.
+- **Lasso Regression ($L_1$ Regularization):** Enforces feature sparsity by penalizing redundant parameters.
+- **ElasticNet:** Balances $L_1$ and $L_2$ penalties for robust generalization on small sample sizes.
+- **Gradient Boosting Regressor:** Non-linear decision tree ensemble modeling complex variable interactions.
+
+---
+
+## Directory Structure
+
+```text
 sdc-activity/
 ├── dataset/
-│   ├── train.csv            # 1,460 residential records with SalePrice labels
+│   ├── train.csv            # 1,460 residential records with ground-truth SalePrice
 │   ├── test.csv             # 1,459 test records for evaluation
-│   ├── sample_submission.csv# Formatting benchmark
+│   ├── sample_submission.csv# Benchmark submission format
 │   └── data_description.txt # Official Ames Housing codebook & data dictionary
-├── Untitled.ipynb           # Primary Jupyter Notebook with complete ML pipeline
+├── Untitled.ipynb           # Complete Jupyter Notebook containing end-to-end ML pipeline
 ├── report.docx              # Formal academic project documentation & analysis report
 ├── requirements.txt         # Pinned reproducible dependencies
-└── README.md                # Enterprise technical repository documentation
+└── README.md                # Master repository technical documentation
 ```
 
-## 7. Installation & Notebook Execution
+---
+
+## Setup & Notebook Execution
+
 ```bash
 # Clone the repository
 git clone https://github.com/StratagemVX/sdc-activity.git
@@ -49,7 +63,10 @@ cd sdc-activity
 
 # Set up virtual environment
 python -m venv venv
-.\venv\Scripts\activate   # Windows
+# Windows:
+.\venv\Scripts\activate
+# Linux/macOS:
+# source venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
@@ -58,7 +75,12 @@ pip install -r requirements.txt
 jupyter notebook Untitled.ipynb
 ```
 
-## 8. Author & Project Information
+---
+
+## Contributor Attribution & Profile
+
 - **Engineer:** Chethan Kumar B S (`StratagemVX`)
-- **Institution:** MVJ College of Engineering
-- **Domain:** Machine Learning, Predictive Regression & Applied Data Science
+- **Institution:** Department of Computer Science & Engineering, MVJ College of Engineering
+- **GitHub:** [https://github.com/StratagemVX](https://github.com/StratagemVX)
+- **Portfolio:** [https://chethan-kumar-portfolio.vercel.app/](https://chethan-kumar-portfolio.vercel.app/)
+- **LinkedIn:** [https://linkedin.com/in/chethan-kumar-b-s-781a002bb](https://linkedin.com/in/chethan-kumar-b-s-781a002bb)
