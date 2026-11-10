@@ -84,3 +84,19 @@ jupyter notebook Untitled.ipynb
 - **GitHub:** [https://github.com/StratagemVX](https://github.com/StratagemVX)
 - **Portfolio:** [https://chethan-kumar-portfolio.vercel.app/](https://chethan-kumar-portfolio.vercel.app/)
 - **LinkedIn:** [https://linkedin.com/in/chethan-kumar-b-s-781a002bb](https://linkedin.com/in/chethan-kumar-b-s-781a002bb)
+
+## Verification and maintenance
+
+Use the source and dependency manifest as the authority for features and operational commands. This project handles user-facing data; verify authorization and privacy behavior when changing data flows.
+
+### Build and test commands
+
+No root package manifest was available during this pass. Select commands from the actual language-specific manifest and CI configuration.
+
+### Contribution and security notes
+
+- Keep features, architecture diagrams, screenshots, and technology details aligned with implementation.
+- Do not commit secrets, private keys, production data, or local environment files; use placeholder-only examples and deployment-managed secrets.
+- Validate authentication, authorization, input validation, and access policies when modifying user data.
+- Include reproduction steps and expected/actual behavior in issue reports.
+- Run relevant build, lint, and test checks before merging.
